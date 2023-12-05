@@ -5,73 +5,32 @@
 #### [kocw 반효경 교수님 강의 참고](http://www.kocw.net/home/search/kemView.do?kemId=1046323)
 
 <details open>
-<summary><b>Introduction to Operating Systems</b></summary>
+<summary><b>목차</b></summary>
 <div markdown="1">
-</div>
-</details>
 
-<details open>
-<summary><b>System Structure & Program Execution</b></summary>
-<div markdown="1">
-</div>
-</details>
+- Introduction to Operating Systems
 
-<details open>
-<summary><b>Process</b></summary>
-<div markdown="1">
-</div>
-</details>
+- System Structure & Program Execution
 
-<details open>
-<summary><b>Process Management</b></summary>
-<div markdown="1">
-</div>
-</details>
+- Process
 
-<details open>
-<summary><b>CPU Scheduling</b></summary>
-<div markdown="1">
-</div>
-</details>
+- Process Management
 
-<details open>
-<summary><b>Process Synchronization</b></summary>
-<div markdown="1">
-</div>
-</details>
+- CPU Scheduling
 
-<details open>
-<summary><b>Deadlocks</b></summary>
-<div markdown="1">
-</div>
-</details>
+- Process Synchronization
 
-<details open>
-<summary><b>Memory Management</b></summary>
-<div markdown="1">
-</div>
-</details>
+- Deadlocks
 
-<details open>
-<summary><b>Virtual Memory</b></summary>
-<div markdown="1">
-</div>
-</details>
+- Memory Management
 
-<details open>
-<summary><b>File Systems</b></summary>
-<div markdown="1">
-</div>
-</details>
+- Virtual Memory
 
-<details open>
-<summary><b>File Systems Implementation</b></summary>
-<div markdown="1">
-</div>
-</details>
+- File Systems
 
-<details open>
-<summary><b>Disk Management and Scheduling</b></summary>
-<div markdown="1">
+- File Systems Implementation
+
+- Disk Management and Scheduling
+
 </div>
 </details>
