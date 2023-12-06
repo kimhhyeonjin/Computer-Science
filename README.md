@@ -1,6 +1,6 @@
 # Computer-Science
 
-## 운영체제
+## 운영체제 (OS, Operating System)
 
 #### [kocw 반효경 교수님 강의 참고](http://www.kocw.net/home/search/kemView.do?kemId=1046323)
 
@@ -8,7 +8,7 @@
 <summary><b>목차</b></summary>
 <div markdown="1">
 
-- Introduction to Operating Systems
+- [Introduction to Operating Systems](./Operating_System/Introduction_to_Operating_System.md)
 
 - System Structure & Program Execution
 
