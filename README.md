@@ -10,7 +10,7 @@
 
 - [Introduction to Operating Systems](./Operating_System/Introduction_to_Operating_System.md)
 
-- System Structure & Program Execution
+- [System Structure & Program Execution](./Operating_System/System_Structure&Program_Execution.md)
 
 - Process
 
