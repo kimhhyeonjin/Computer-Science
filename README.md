@@ -14,7 +14,7 @@
 
 - [Process](./Operating_System/Process.md)
 
-- Process Management
+- [Process Management](./Operating_System/Process_Management.md)
 
 - CPU Scheduling
 
