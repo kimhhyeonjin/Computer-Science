@@ -16,7 +16,7 @@
 
 - [Process Management](./Operating_System/Process_Management.md)
 
-- CPU Scheduling
+- [CPU Scheduling](./Operating_System/CPU_Scheduling.md)
 
 - Process Synchronization
 
