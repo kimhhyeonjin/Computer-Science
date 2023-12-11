@@ -18,7 +18,7 @@
 
 - [CPU Scheduling](./Operating_System/CPU_Scheduling.md)
 
-- Process Synchronization
+- [Process Synchronization](./Operating_System/Process_Synchronization.md)
 
 - Deadlocks
 
