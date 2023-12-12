@@ -20,7 +20,7 @@
 
 - [Process Synchronization](./Operating_System/Process_Synchronization.md)
 
-- Deadlocks
+- [Deadlocks](./Operating_System/Deadlocks.md)
 
 - Memory Management
 
