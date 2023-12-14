@@ -133,3 +133,47 @@
     - 모든 자원 유형에 할당 순서를 정하여 정해진 순서대로만 자원 할당
   
   - utilization 저하, throughput 감소, starvation 문제
+
+- deadlock avoidance
+  
+  - deadlock avoidance
+    
+    - 자원 요청에 대한 부가적인 정보를 이용해서 deadlock의 가능성이 없는 경우에만 자원 할당
+    
+    - 시스템 state가 원래 state로 돌아올 수 있는 경우에만 자원 할당
+    
+    - 가장 단순하고 일반적인 모델은 프로세스가 필요로 하는 각 자원별 최대 사용량을 미리 선언하도록 하는 방법
+  
+  - 2가지 알고리즘
+    
+    - 자원에 하나의 인스턴스만 있는 경우
+      
+      - Resource Allocation Graph Algorithm 사용
+    
+    - 자원에 여러 개의 인스턴스가 있는 경우
+      
+      - Banker's Algorithm 사용
+        
+        - 가정
+          
+          - 모든 프로세스는 자원의 최대 사용량을 미리 명시
+          
+          - 프로세스가 요청 자원을 모두 할당받은 경우 유한 시간 안에 자원을 다시 반납
+        
+        - 방법
+          
+          - 자원 요청 시 safe 상태를 유지할 경우에만 할당
+          
+          - 총 요청 자원의 수가 가용 자원의 수보다 적은 프로세스를 선택
+            
+            - 그런 프로세스가 없으면 unsafe 상태임
+          
+          - 그런 프로세스가 있으면 그 프로세스에게 자원 할당
+          
+          - 할당받은 프로세스가 종료되면 모든 자원을 반납
+          
+          - 모든 프로세스가 종료될 때까지 이러한 과정 반복
+
+- deadlock detection and recovery
+
+- deadlock ignorance
