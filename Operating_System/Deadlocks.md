@@ -142,13 +142,47 @@
     
     - 시스템 state가 원래 state로 돌아올 수 있는 경우에만 자원 할당
     
+    - 시스템이 unsafe state에 들어가지 않는 것을 보장
+    
     - 가장 단순하고 일반적인 모델은 프로세스가 필요로 하는 각 자원별 최대 사용량을 미리 선언하도록 하는 방법
+  
+  - safe state
+    
+    - 시스템 내의 프로세스에 대한 safe sequence가 존재하는 상태
+    
+    - safe sequence
+      
+      - 프로세스의 sequence `<P1, P2, ..., Pn>`이 safe 하려면 Pi (1 <= i <= n)의 자원 요청이 **가용자원 + 모든 Pj (j < i)의 보유 자원**에 의해 충족되어야 함
+      
+      - 조건을 만족하면 다음 방법으로 모든 프로세스의 수행을 보장
+        
+        - Pi의 자원 요청이 즉시 충족될 수 없으면 모든 Pj (j < i)가 종료될 때까지 기다림
+        
+        - P(i-1)이 종료되면 Pi의 자원요청을 만족시켜 수행
+    
+    - 시스템이 safe state에 있으면 deadlock X
+    
+    - 시스템이 unsafe state에 있으면 possibility of deadlock
   
   - 2가지 알고리즘
     
     - 자원에 하나의 인스턴스만 있는 경우
       
-      - Resource Allocation Graph Algorithm 사용
+      - Resource Allocation Graph (자원할당 그래프) Algorithm 사용
+        
+        - Claim edge Pi -> Rj
+          
+          - 프로세스 Pi가 자원 Rj를 미래에 요청할 수 있음
+            
+            - 점선으로 표시
+          
+          - 프로세스가 해당 자원 요청 시 request edge로 바뀜
+            
+            - 실선으로 표시
+        
+        - request edge의 assignment edge 변경 시 cycle이 생기지 않는 경우에만 요청 자원 할당
+          
+          - cycle 생성 여부 조사 시 프로세스의 수가 n일 때 O(n^2) 시간이 걸림
     
     - 자원에 여러 개의 인스턴스가 있는 경우
       
@@ -175,5 +209,59 @@
           - 모든 프로세스가 종료될 때까지 이러한 과정 반복
 
 - deadlock detection and recovery
+  
+  - deadlock detection
+    
+    - deadlock 발생은 허용하되 그에 대한 detection 루틴을 두어 deadlock 발견 시 recover
+    
+    - resource type 당 인스턴스가 하나인 경우
+      
+      - 자원할당 그래프에서의 cycle이 곧 deadlock을 의미
+      
+      - wait-for graph 알고리즘
+        
+        - wait-for graph
+          
+          - 자원할당 그래프의 변형
+          
+          - 프로세스만으로 노드 구성
+        
+        - 알고리즘
+          
+          - wait-for graph에 사이클이 존재하는지를 주기적으로 조사
+          
+          - O(n^2)
+    
+    - resource type 당 인스턴스가 여러 개인 경우
+      
+      - Banker's Algorithm과 유사한 방법 활용
+  
+  - deadlock recovery
+    
+    - process 종료
+      
+      - 모든 deadlock process 종료
+      
+      - deadlock cycle이 없어질 때까지 프로세스를 하나씩 종료
+        
+        - resource preemption
+          
+          - 비용을 최소화할 프로세스 선정
+          
+          - safe state로 rollback하여 process restart
+          
+          - possibility of starvation
+            
+            - 동일한 프로세스가 계속 선정되는 경우
+            
+            - cost factor에 rollback 횟수도 같이 고려
 
 - deadlock ignorance
+  
+  - deadlock이 일어나지 않는다고 생각하고 아무런 조치도 취하지 않음
+    
+    - deadlock이 매우 드물게 발생하므로 deadlock에 대한 조치 자체가 더 큰 오버헤드일 수 있음
+    
+    - 만약 시스템에 deadlock이 발생한 경우 시스템이 비정상적으로 작동하는 것을 사람이 느낀 후 직접 프로세스를 죽이는 등으로 방법으로 대처
+    
+    - UNIX, Windows 등 대부분의 범용 OS가 채택
