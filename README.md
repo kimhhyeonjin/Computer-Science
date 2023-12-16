@@ -22,7 +22,7 @@
 
 - [Deadlocks](./Operating_System/Deadlocks.md)
 
-- Memory Management
+- [Memory Management](./Operating_System/Memory_Management.md)
 
 - Virtual Memory
 
