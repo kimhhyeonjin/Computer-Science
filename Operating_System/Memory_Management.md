@@ -159,3 +159,161 @@
       - execution time binding에서는 추후 빈 메모리 영역 아무 곳에나 올릴 수 있음
       
       - swap time은 대부분 transfer time (swap되는 양에 비례하는 시간)임
+
+- 물리 메모리 할당 (Allocation of Physical Memory)
+  
+  - 메모리는 일반적으로 두 영역으로 나뉘어 사용
+    
+    - OS 상주 영역
+      
+      - interrupt vector와 함께 낮은 주소 영역 사용
+    
+    - 사용자 프로세스 영역
+      
+      - 높은 주소 영역 사용
+      
+      - 사용자 프로세스 영역의 할당 방법
+        
+        - **Contiguous allocation**
+          
+          - 각각의 프로세스가 메모리의 연속적인 공간에 적재되도록 하는 것
+          
+          - Fixed partition allocation
+          
+          - Variable partition allocation
+        
+        - **Noncontiguous allocation**
+          
+          - 하나의 프로세스가 메모리의 여러 영역에 분산되어 올라갈 수 있음
+          
+          - Paging
+          
+          - Segmentation
+          
+          - Paged Segmentation
+  
+  - Contiguous Allocation
+    
+    ![contiguous_allocation](./image/contiguous_allocation.png)
+    
+    - 고정분할 (Fixed partition) 방식
+      
+      - 물리적 메모리를 몇 개의 영구적 분할 (partition)로 나눔
+      
+      - 분할의 크기가 모두 동일한 방식과 서로 다른 방식이 존재
+      
+      - 분할 당 하나의 프로그램 적재
+      
+      - 융통성이 없음
+        
+        - 동시에 메모리에 load되는 프로그램의 수가 고정됨
+        
+        - 최대 수행 가능 프로그램 크기 제한
+      
+      - internal fragmentation 발생 (external fragmentation도 발생)
+        
+        - internal fragmentation (내부 조각)
+          
+          - 프로그램 크기보다 분할의 크기가 큰 경우
+          
+          - 하나의 분할 내부에서 발생하는 사용되지 않는 메모리 조각
+          
+          - 특정 프로그램에 배정되었지만 사용되지 않는 공간
+    
+    - 가변분할 (Variable partition) 방식
+      
+      - 프로그램의 크기를 고려해서 할당
+      
+      - 분할의 크기, 개수가 동적으로 변함
+      
+      - 기술적 관리 기법 필요
+      
+      - external fragmentation 발생 (internal fragmentation은 발생하지 않음)
+        
+        - external fragmentation (외부 조각)
+          
+          - 프로그램 크기보다 분할의 크기가 작은 경우
+          
+          - 아무 프로그램에도 배정되지 않은 빈 곳인데도 프로그램이 올라갈 수 없는 작은 분할
+      
+      - hole
+        
+        - 가용 메모리 공간
+        
+        - 다양한 크기의 hole이 메모리 여러 곳에 흩어져 있음
+        
+        - 프로세스가 도착하면 수용가능한 hole을 할당
+        
+        - 운영체제의 다음의 정보를 유지
+          
+          - 할당 공간
+          
+          - 가용 공간 (hole)
+        
+        - Dynamic Storage-Allocation Problem
+          
+          - 가변 분할 방식에서 size n인 요청을 만족하는 가장 적절한 hole을 찾는 문제
+          
+          - `First-fit`
+            
+            - Size가 n 이상인 것 중 최초로 찾아지는 hole에 할당
+          
+          - `Best-fit`
+            
+            - Size가 n 이상인 가장 작은 hole을 찾아서 할당
+            
+            - hole의 리스트가 크기 순으로 정렬되지 않은 경우 모든 hole의 리스트를 탐색해야 함
+            
+            - 많은 수의 아주 작은 hole이 생성됨
+          
+          - `Worst-fit`
+            
+            - 가장 큰 hole에 할당
+            
+            - 모든 리스트를 탐색해야 함
+            
+            - 상대적으로 아주 큰 hole이 생성됨
+          
+          - First-fit과 Best-fit이 Worst-fit보다 속도와 공간 이용률 측면에서 효과적인 것으로 실험적인 결과 알려짐
+        
+        - compaction
+          
+          - external fragmentation 문제를 해결하는 한 가지 방법
+          
+          - 사용 중인 메모리 영역을 한 군데로 몰고 hole을 다른 한 곳으로 몰아 큰 block을 만드는 것
+          
+          - 비용이 매우 많이 듦
+            
+            - 최소한의 메모리 이동으로 compaction하는 방법은 매우 복잡한 문제
+          
+          - compaction은 프로세스의 주소가 실행 시간에 동적으로 재배치 가능한 경우에만 수행될 수 있음
+  
+  - Noncontiguous allocation
+    
+    - Paging
+      
+      - paging
+        
+        - Process의 virtual memory를 동일한 사이즈의 page 단위로 나눔
+        
+        - virtual memory의 내용이 페이지 단위로 noncontiguous하게 저장
+        
+        - 일부는 backing storage에, 일부는 physical memory에 저장
+      
+      - 방법
+        
+        - physical memory를 동일한 크기의 프레임으로 나눔
+        
+        - logical memory를 frame과 같은 크기의 페이지로 나눔
+        
+        - 모든 가용 프레임 관리
+        
+        - page table을 사용하여 logical address를 physcial address로 변환
+        
+        - external fragmentation은 발생하지 않음
+        
+        - internal fragmentation 발생 가능
+    
+    - Segmentation
+    
+    - Paged segmentation
