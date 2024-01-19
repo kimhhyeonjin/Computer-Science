@@ -302,6 +302,8 @@
       
       - 방법
         
+        ![paging](./image/paging.png)
+        
         - physical memory를 동일한 크기의 프레임으로 나눔
         
         - logical memory를 frame과 같은 크기의 페이지로 나눔
@@ -313,6 +315,103 @@
         - external fragmentation은 발생하지 않음
         
         - internal fragmentation 발생 가능
+      
+      - implementation
+        
+        - page table은 main memory에 상주
+        
+        - 2개의 register
+          
+          - page-table base register (PTBR)
+            
+            - page table을 가리킴
+          
+          - page-table length register (PTLR)
+            
+            - 테이블 크기를 보관
+        
+        - 모든 메모리 접근 연산에는 2번의 memory access 필요
+          
+          - page table 접근 1번, 실제 data/instruction 접근 1번
+        
+        - 속도 향상을 위해 associative register 혹은 translation look-aside buffer (TLB)라 불리는 고속의 lookup hardware cache 사용
+          
+          - associative register (TLB)
+            
+            - parallel search 가능
+            
+            - TLB에는 page table 중 일부만 존재
+            
+            - address translation 방법
+              
+              - page table 중 일부가 associative register에 보관되어 있음
+              
+              - 만약 해당 page 번호가 associative register에 있는 경우 바로 frame 번호를 얻음
+              
+              - 그렇지 않은 경우 main memory의 page table로부터 frame 번호 얻음
+              
+              - TLB는 context switch 때 flush (remove old entries)
+            
+            - 메모리 접근 시간 (Access Time)
+              
+              - associative register lookup time : ε
+              
+              - memory cycle time : 1
+              
+              - hit ratio : α
+                
+                - associative register에서 찾아지는 비율
+                
+                - 1에 가까운 수임
+              
+              - Effective Access Time (EAT)
+                
+                - EAT = hit + miss
+                
+                - EAT = `((실제 데이터에 접근하는 메모리 접근 시간 + TLB에 접근하는 시간) * TLB에서 주소변환 정보가 찾아지는 비율)` + `((페이지 테이블 접근 시간 + 실제 데이터 접근 시간 + TLB에 접근하는 시간) * 주소변환 정보가 TLB에 없는 경우)`
+                
+                - EAT = (1+ε)α + ((2+ε)(1-α))
+                
+                - EAT = 2 + ε - α
+                  
+                  - α가 1에 가까운 수이므로 ε은 작은 수이고 결과적으로 2 + ε - α는 페이지 테이블만 있을 때의 2보다 작은 수
+      
+      - Two-Level Page Table
+        
+        - 시간은 더 걸리지만 페이지 테이블을 위한 공간을 줄임
+          
+          - 현대의 컴퓨터는 address space가 매우 큰 프로그램 지원
+            
+            - 32 bit address 사용 시 2^32B (4GB)의 주소 공간
+            
+            - 각 page size가 4K인 경우 1M개의 page table entry 필요
+            
+            - 그러나, 대부분의 프로그램은 4G의 주소 공간 중 지극히 일부분만 사용하므로 page table공간이 심하게 낭비됨
+          
+          - page table 자체를 page로 구성하고 **사용되지 않는 주소 공간에 대한 outer page table의 엔트리 값은 NULL**
+        
+        - 예시
+          
+          ![two_level_page_table](./image/two_level_page_table.png)
+          
+          - page table(위 그림의 가운데)의 크기와 memory의 크기는 동일함
+          
+          - logical address (on 32bit machine with 4K page size)의 구성
+            
+            | page number |     | page offset |
+            | -----------:| ---:| -----------:|
+            | p1          | p2  | d           |
+            | 10          | 10  | 12          |
+            
+            - 20 bit의 page number
+              
+              - p1 : outer page table의 index
+              
+              - p2 : outer page table의 page에서의 변위 (displacement)
+              
+              - page table 자체가 page로 구성되기 때문에 p1과 p2는 각각 10 bit
+            
+            - 12 bit의 page offset
     
     - Segmentation
     
