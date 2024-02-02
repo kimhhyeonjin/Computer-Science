@@ -412,6 +412,26 @@
               - page table 자체가 page로 구성되기 때문에 p1과 p2는 각각 10 bit
             
             - 12 bit의 page offset
+      
+      - Multilevel Paging and Performance
+        
+        - Address space가 더 커지면 다단계 페이지 테이블 필요
+        
+        - 각 단계의 페이지 테이블이 메모리에 존재하므로 logical address의 physical address 변환에 더 많은 메모리 접근 필요
+        
+        - TLB를 통해 메모리 접근 시간을 줄일 수 있음
+        
+        - 예시
+          
+          - 4단계 페이지 테이블을 사용하고
+          
+          - 메모리 접근 시간이 100ns, TLB 접근 시간이 20ns이고
+          
+          - TLB hit ratio가 98%인 경우
+            
+            - effective memory access time = 0.98 * 120 + 0.02 * 520 = 128ns
+            
+            - 메모리 접근 시간이 100ns이므로 주소변환의 경우 28ns만 소요됨
     
     - Segmentation
     
