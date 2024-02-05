@@ -432,6 +432,30 @@
             - effective memory access time = 0.98 * 120 + 0.02 * 520 = 128ns
             
             - 메모리 접근 시간이 100ns이므로 주소변환의 경우 28ns만 소요됨
+      
+      - memory 보호를 위해 page table의 각 entry마다 bit를 둠
+        
+        - protection bit
+          
+          - page에 대한 접근 권한 (read / write / read-only)
+        
+        - valid / invalid bit
+          
+          - valid bit
+            
+            - 접근 허용
+            
+            - 해당 주소의 frame에 그 프로세스를 구성하는 유효한 내용이 있음을 의미
+          
+          - invalid bit
+            
+            - 접근 불허
+            
+            - 해당 주소의 frame에 유효한 내용이 없음을 의미
+              
+              - 프로세스가 그 주소 부분을 사용하지 않는 경우
+              
+              - 해당 페이지가 메모리에 올라와있지 않고 swap area에 있는 경우
     
     - Segmentation
     
