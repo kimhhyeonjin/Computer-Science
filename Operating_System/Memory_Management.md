@@ -456,6 +456,52 @@
               - 프로세스가 그 주소 부분을 사용하지 않는 경우
               
               - 해당 페이지가 메모리에 올라와있지 않고 swap area에 있는 경우
+      
+      - Inverted Page Table
+        
+        - page table이 큰 이유
+          
+          - 모든 프로세스 별로 logical address에 대응하는 모든 페이지에 대해 page table entry가 존재
+          
+          - 대응하는 page가 메모리에 있든 아니든 page table에는 entry로 존재
+        
+        - inverted page table
+          
+          - page frame 하나 당 page table에 하나의 entry를 둔 것 (system-wide)
+          
+          - 각 page table entry는 각각의 물리적 메모리의 page frame이 담고 있는 내용 표시 (process-id, process의 logical address)
+          
+          - 단점
+            
+            - 테이블 전체를 탐색해야 함
+              
+              - 시간적 오버헤드
+          
+          - 조치
+            
+            - associative register 사용
+              
+              - 비쌈
+      
+      - Shared Page
+        
+        - shared code와 private code and data로 나누어 메모리에 올림
+        
+        - shared code
+          
+          - re-entrant code (pure code)
+          
+          - **read-only**로 하여 프로세스 간에 하나의 code만 메모리에 올림
+            
+            - text editors, compilers, window systems 등
+          
+          - **모든 프로세스의 logical address space에서 동일한 위치**에 있어야 함
+        
+        - private code and data
+          
+          - 각 프로세스의 private code와 데이터는 독자적으로 메모리에 올림
+          
+          - private data는 logical address space의 아무 곳에 올라와도 무방함
     
     - Segmentation
     
