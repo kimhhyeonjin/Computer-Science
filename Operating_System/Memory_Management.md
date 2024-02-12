@@ -504,5 +504,69 @@
           - private data는 logical address space의 아무 곳에 올라와도 무방함
     
     - Segmentation
+      
+      - segment
+        
+        - 의미 단위
+        
+        - 예시
+          
+          - main()
+          
+          - function
+          
+          - global variables
+          
+          - stack
+          
+          - symbol table, arrays
+      
+      - segmentation
+        
+        - segment 단위로 저장하는 것
+        
+        - 프로그램은 한 개 혹은 여러 개의 segment로 구성되어 있음
+          
+          - 작게는 프로그램을 구성하는 함수 하나하나
+          
+          - 크게는 프로그램 전체
+          
+          - 일반적으로는 code, data, stack 부분이 하나씩의 segment로 정의됨
+      
+      - segmentation architecture
+        
+        - logical address
+          
+          - segment-number, offset
+        
+        - segment table
+          
+          - 각 table entry는 base와 limit을 가짐
+          
+          - base
+            
+            - segment가 시작하는 physical address
+          
+          - limit
+            
+            - segment의 길이
+        
+        - segment-table base register (STBR)
+          
+          - 물리적 메모리에서의 segment table의 위치
+        
+        - segment-table length register (STLR)
+          
+          - 프로그램이 사용하는 segment의 수
+          
+          - segment number가 STLR보다 작아야 함
+            
+            - 그렇지 않은 경우 trap
+        
+        - protection
+        
+        - sharing
+        
+        - allocation
     
     - Paged segmentation
