@@ -189,6 +189,8 @@
           - Paging
           
           - Segmentation
+            
+            - Paging과 비교했을 때 Segmentation은 프로그램에 몇 개 안들어가기 때문에 table을 위한 메모리 낭비로 따진다면 Paging보다 낭비가 적음
           
           - Paged Segmentation
   
@@ -564,9 +566,45 @@
             - 그렇지 않은 경우 trap
         
         - protection
+          
+          - 각 세그먼트 별로 protection bit가 있음
+          
+          - each entry에는 valid bit과 read/write/execution 권한 bit이 있음
+            
+            - valid bit
+              
+              - = 0
+              
+              - illegal segment
+            
+            - read/write/execution 권한 bit
         
         - sharing
+          
+          - shared segment
+          
+          - same segment number
+          
+          - segment는 의미 단위이기 때문에 공유 (sharing)와 보안 (protection)에 있어 paging보다 훨씬 효과적
         
         - allocation
+          
+          - first fit / best fit
+          
+          - external fragmentation 발생
+          
+          - segment의 길이가 동일하지 않으므로 가변분할 방식에서와 동일한 문제점 발생
     
     - Paged segmentation
+      
+      - 세그먼트 하나가 여러 개의 페이지로 구성됨
+        
+        - paging과 segmentation의 장점을 모두 누릴 수 있음
+        
+        - paging을 했기 때문에 segmentation의 allocation 문제는 발생하지 않음
+        
+        - segmentation의 protection과 sharing의 장점은 segment table에 표시
+      
+      - segmentation과의 차이점
+        
+        - segment-table entry가 segment의 base address를 가지고 있는 것이 아니라 segment를 구성하는 page table의 base address를 가지고 있음
