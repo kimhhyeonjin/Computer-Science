@@ -24,7 +24,7 @@
 
 - [Memory Management](./Operating_System/Memory_Management.md)
 
-- Virtual Memory
+- [Virtual Memory](./Operating_System/Virtual_Memory.md)
 
 - File Systems
 
