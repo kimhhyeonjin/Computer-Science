@@ -143,3 +143,29 @@
     - heap 형태
       
       - O(log n) complexity
+
+- 다양한 캐슁 환경
+  
+  - 캐슁(caching) 기법
+    
+    - 한정된 빠른 저장 공간을 가지고 계속적으로 요청되는 새로운 객체를 저장 공간에 읽어들였다가 후속 요청 시 직접 서비스하는 방식
+      
+      - 해당 저장 공간을 캐쉬라고 함
+    
+    - paging system 외에도 cache memory, buffer caching, web caching 등 다양한 분야에서 사용
+  
+  - 캐쉬 운영의 시간 제약
+    
+    - 교체 알고리즘에서 삭제할 객체를 결정하는 일에 지나치게 많은 시간이 걸리는 경우 실제 시스템에서 사용할 수 없음
+    
+    - buffer caching이나 web caching의 경우
+      
+      - O(1)에서 O(log n) 정도까지 허용
+        
+        - LRU, LFU 사용 가능
+    
+    - paging system인 경우
+      
+      - 페이지 요청이 너무 빈번하여 O(1)인 LRU 알고리즘의 list 조작도 부담
+        
+        - paging system에서 LRU, LFU를 사용하기 어려움
