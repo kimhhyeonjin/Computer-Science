@@ -143,6 +143,32 @@
     - heap 형태
       
       - O(log n) complexity
+  
+  - Clock algorithm
+    
+    - Clock algorithm (= second chance algorithm, NUR(Not Used Recently), NRU(Not Recently Used))
+      
+      - LRU의 근사 (approximation) 알고리즘
+      
+      - reference bit을 사용해서 교체 대상 페이지 선정 (circular list)
+      
+      - reference bit가 0인 것을 찾을 때까지 포인터를 하나씩 앞으로 이동
+      
+      - 포인터를 이동하는 중에 reference bit 1은 모두 0으로 바꿈
+      
+      - reference bit이 0인 것을 찾으면 그 페이지를 교체
+      
+      - 한 바퀴 되돌아와서도 (=second chance) 0이면 그때에는 replace 당함
+      
+      - 자주 사용되는 페이지라면 second chance가 올 때 1
+    
+    - Clock algorithm의 개선
+      
+      - reference bit과 modified bit (dirty bit)을 함께 사용
+      
+      - 최근에 참조된 페이지의 reference bit은 1
+      
+      - 최근에 변경된 페이지 (I/O를 동반하는 페이지)의 modified bit은 1
 
 - 다양한 캐슁 환경
   
@@ -169,3 +195,5 @@
       - 페이지 요청이 너무 빈번하여 O(1)인 LRU 알고리즘의 list 조작도 부담
         
         - paging system에서 LRU, LFU를 사용하기 어려움
+        
+        - **Clock algorithm** 사용
