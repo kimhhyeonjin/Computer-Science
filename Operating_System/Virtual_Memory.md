@@ -197,3 +197,31 @@
         - paging system에서 LRU, LFU를 사용하기 어려움
         
         - **Clock algorithm** 사용
+
+- page frame의 allocation
+  
+  - 각 process에 얼만큼의 page frame을 할당할 것인지
+  
+  - allocation의 필요성
+    
+    - 메모리 참조 명령어 수행시 명령어, 데이터 등 여러 페이지 동시 참조
+      
+      - 명령어 수행을 위해 최소한 할당되어야 하는 frame의 수가 있음
+    
+    - loop를 구성하는 page는 한번에 allocate되는 것이 유리함
+      
+      - 최소한의 allocation이 없으면 매 loop마다 page fault 발생
+  
+  - allocation scheme
+    
+    - equal allocation
+      
+      - 모든 프로세스에 똑같은 개수 할당
+    
+    - proportional allocation
+      
+      - 프로세스 크기에 비례하여 할당
+    
+    - priority allocation
+      
+      - 프로세스의 priority에 따라 다르게 할당
