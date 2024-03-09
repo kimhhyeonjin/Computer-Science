@@ -225,3 +225,49 @@
     - priority allocation
       
       - 프로세스의 priority에 따라 다르게 할당
+
+- global replacement vs local replacement
+  
+  - global replacement
+    
+    - replace 시 다른 process에 할당된 frame을 빼앗아 올 수 있음
+    
+    - process별 할당량을 조절하는 또 다른 방법
+    
+    - 예시
+      
+      - FIFO, LRU, LFU 등의 알고리즘을 global replacement로 사용시
+      
+      - Working set, PFF 알고리즘 사용시
+  
+  - local replacement
+    
+    - 자신에게 할당된 frame 내에서만 replacement
+    
+    - FIFO, LRU, LFU 등의 알고리즘을 process 별로 운영시
+
+- thrashing
+  
+  - thrashing
+    
+    - 프로세스의 원활한 수행에 필요한 최소한의 page frame 수를 할당받지 못한 경우 발생
+    
+    - page fault rate이 매우 높아짐
+    
+    - CPU utilization이 낮아짐
+    
+    - OS는 MPD (Multiprogramming degree)를 높여야 한다고 판단
+    
+    - 또 다른 프로세스가 시스템에 추가됨 (higher MPD)
+    
+    - 프로세스 당 할당된 frame의 수가 더욱 감소
+    
+    - 프로세스는 page의 swap in / swap out으로 매우 바쁨
+    
+    - 대부분의 시간에 CPU는 한가함
+    
+    - low throughput
+  
+  - thrashing diagram
+    
+    ![thrashing](./image/thrashing.png)
