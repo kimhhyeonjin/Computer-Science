@@ -271,3 +271,59 @@
   - thrashing diagram
     
     ![thrashing](./image/thrashing.png)
+
+- working-set
+  
+  - working-set model
+    
+    - locality of reference
+      
+      - 프로세스는 특정 시간 동안 일정 장소만을 집중적으로 참조
+      
+      - 집중적으로 참조되는 해당 page 집합을 locality set이라 함
+    
+    - working-set model
+      
+      - working-set
+        
+        - locality에 기반하여 프로세스가 일정 시간동안 원활하게 수행되기 위해 한꺼번에 메모리에 올라와 있어야 하는 page의 집합
+      
+      - working-set 모델에서는 process의 working-set 전체가 메모리에 올라와 있어야 수행되고 그렇지 않을 경우 모든 frame을 반납한 후 swap out (suspend)
+      
+      - thrashing을 방지함
+      
+      - multiprogramming degree 결정
+  
+  - working-set algorithm
+    
+    - working set의 결정
+      
+      - working set window를 통해 알아냄
+      
+      - window size가 Δ인 경우
+        
+        - 시각 ti에서의 working set WS(ti)
+          
+          - time interval [ti-Δ, ti] 사이에 참조된 서로 다른 페이지들의 집합
+        
+        - working set에 속한 page는 메모리에 유지, 속하지 않은 것은 버림 (즉, 참조된 후 Δ시간 동안 해당 page를 메모리에 유지한 후 버림)
+    
+    - working set algorithm
+      
+      - process의 working set size 합이 page frame의 수보다 큰 경우
+        
+        - 일부 process를 swap out시켜 남은 process의 working set을 우선적으로 충족시킴 (MPD를 줄임)
+        
+        - working set을 다 할당하고도 page frame이 남는 경우
+          
+          - swap out 되었던 프로세스에게 working set을 할당 (MPD를 키움)
+    
+    - window size Δ
+      
+      - working set을 제대로 탐지하기 위해서는 window size를 잘 결정해야 함
+      
+      - Δ값이 너무 작으면 locality set을 모두 수용하지 못할 우려가 있음
+      
+      - Δ값이 너무 크면 여러 규모의 locality set 수용
+      
+      - Δ값이 ∞이면 전체 프로그램을 구성하는 page를 working set으로 간주
