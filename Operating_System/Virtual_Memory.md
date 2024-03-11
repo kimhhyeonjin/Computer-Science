@@ -327,3 +327,37 @@
       - Δ값이 너무 크면 여러 규모의 locality set 수용
       
       - Δ값이 ∞이면 전체 프로그램을 구성하는 page를 working set으로 간주
+
+- PFF (Page-Fault Frequency) Scheme
+  
+  - page fault rate의 상한값과 하한값을 둠
+    
+    - page fault rate이 상한값을 넘으면 frame을 더 할당
+    
+    - page fault rate이 하한값 이하이면 할당 frame 수를 줄임
+  
+  - 빈 frame이 없으면 일부 프로세스를 swap out
+
+- page size의 결정
+  
+  - page size를 감소시키면
+    
+    - 페이지 수 증가
+    
+    - 페이지 테이블 크기 증가
+      
+      - 페이지 테이블을 위한 메모리 낭비가 심해짐
+    
+    - internal fragmentation 감소
+    
+    - disk transfer의 효율성 감소
+      
+      - seek/rotation vs transfer
+    
+    - 필요한 정보만 메모리에 올라와 메모리 이용이 효율적
+      
+      - locality의 활용 측면에서는 좋지 않음
+  
+  - trend
+    
+    - larger page size
