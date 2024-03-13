@@ -53,3 +53,45 @@
     - 여러 개의 물리적인 디스크를 하나의 파티션으로 구성하기도 함
     
     - (물리적) 디스크를 파티션으로 구성한 뒤 각각의 파티션에 file system을 깔거나 swapping 등 다른 용도로 사용할 수 있음
+
+- open()
+  
+  - **파일의 metadata를 메모리에 올려놓는 것**
+  
+  - retrieves metadata from disk to main memory
+  
+  - `open("/a/b/c")`
+    
+    - 디스크로부터 파일 c의 메타데이터를 메모리로 가지고 옴
+    
+    - 이를 위해서 directory path를 search
+      
+      - 루트 디렉토리 `/` 를 open하고 그 안에서 파일 a의 위치 획득
+      
+      - 파일 a를 open한 후 read하여 그 안에서 파일 b의 위치 획득
+      
+      - 파일 b를 open한 후 read하여 그 안에서 파일 c의 위치 획득
+      
+      - 파일 c를 open
+    
+    - directory path의 search에 너무 많은 시간 소요
+      
+      - open을 read/write와 별도로 두는 이유임
+      
+      - 한 번 open한 파일은 read/write 시 directory search 불필요
+    
+    - open file table
+      
+      - 현재 open된 파일의 메타데이터 보관소 (in memory)
+      
+      - 디스크의 메타데이터보다 몇 가지 정보가 추가됨
+        
+        - open한 프로세스의 수
+        
+        - file offset
+          
+          - 파일이 어느 위치에 접근 중인지 (별도의 테이블이 필요함)
+    
+    - file descriptor (file handle, file control block)
+      
+      - open file table에 대한 위치 정보 (프로세스 별)
