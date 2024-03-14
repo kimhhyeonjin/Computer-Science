@@ -95,3 +95,93 @@
     - file descriptor (file handle, file control block)
       
       - open file table에 대한 위치 정보 (프로세스 별)
+
+- File Protection
+  
+  - 각 파일에 대해 누구에게 어떤 유형의 접근 (read/write/execution)을 허락할 것인가?
+  
+  - access control 방법
+    
+    - access control matrix
+      
+      |       | file1 | file2 | file3 |
+      | ----- | ----- | ----- | ----- |
+      | user1 | rw    | rw    | r     |
+      | user2 | rw    | r     | r     |
+      | user3 | r     |       |       |
+      
+      - access control list (ACL)
+        
+        - matrix에서 열에 해당하는 부분
+        
+        - 파일별로 누구에게 어떤 접근 권한이 있는지 표시
+      
+      - capability
+        
+        - matrix에서 행에 해당하는 부분
+        
+        - 사용자별로 자신이 접근 권한을 가진 파일 및 해당 권한 표시
+      
+      - 모든 사용자에 대해 모든 파일의 접근 권한을 제어
+        
+        - 부가적인 오버헤드가 큼
+    
+    - grouping
+      
+      - 전체 user를 owner, group, public의 세 그룹으로 구분
+      
+      - 각 파일에 대해 세 그룹의 접근 권한(rwx)을 3비트씩으로 표시
+      
+      - 일반적으로 이 방법 사용
+      
+      - 예시
+        
+        - UNIX
+          
+          - rwxr--r--
+            
+            - rwx(owner)r--(group)r--(other)
+    
+    - password
+      
+      - 파일마다 password를 두는 방법
+        
+        - 디렉토리 파일에 두는 방법도 가능
+      
+      - 모든 접근 권한에 대해 하나의 password
+        
+        - all-or-nothing
+      
+      - 접근 권한별 password
+        
+        - 암기 문제, 관리 문제
+
+- file system의 mounting
+  
+  ![file_system_mounting](./image/file_system_mounting.png)
+  
+  - 하나의 물리적인 disk를 파티셔닝을 통해 여러 개의 논리적인 디스크로 나눌 수 있음
+  
+  - 각각의 논리적인 디스크에는 파일 시스템을 설치해 사용할 수 있음
+  
+  - 특정 운영체제에 대해서 파일 시스템 하나가 접근 가능한데 만약 다른 파티션에 설치되어 있는 파일 시스템에 접근해야 한다면 **mounting 연산 이용**
+    
+    - root file system의 특정 디렉토리에 또 다른 파티션에 있는 파일 시스템을 마운트
+      
+      - 마운트된 디렉토리를 접근하게 되면 또 다른 파티션에 있는 파일 시스템에 접근하는 것과 동일
+
+- access methods
+  
+  - 시스템이 제공하는 파일 정보의 접근 방식
+    
+    - 순차 접근 (sequential access)
+      
+      - 카세트 테이프를 사용하는 방식처럼 접근
+      
+      - 읽거나 쓰면 offset은 자동적으로 증가
+    
+    - 직접 접근, 임의 접근 (direct access, random access)
+      
+      - LP 레코드 판과 같이 접근하도록 함
+      
+      - 파일을 구성하는 레코드를 임의의 순서로 접근할 수 있음
