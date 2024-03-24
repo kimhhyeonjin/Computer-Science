@@ -91,3 +91,55 @@
             - 단점
               
               - index를 위한 공간 낭비 발생
+
+- UNIX 파일 시스템의 구조
+  
+  ![UNIX_file_system](./image/UNIX_file_system.png)
+  
+  - 유닉스 파일 시스템의 중요 개념
+    
+    - Boot block
+      
+      - 모든 파일 시스템의 제일 앞에 옴
+      
+      - 부팅에 필요한 정보 (bootstrap loader)
+        
+        - 운영체제의 커널의 위치를 찾아 메모리에 올려 정상적인 부팅이 일어나게 됨
+    
+    - Super block
+      
+      - 파일 시스템에 관한 총체적인 정보를 담고 있음
+      
+      - 어디가 빈 블록이고 어디가 실제로 파일이 사용중인 블록인지, 어디까지가 Inode list이고 어디부터가 data block인지에 대한 정보 등
+    
+    - Inode list
+      
+      - 파일 이름을 제외한 파일의 모든 메타 데이터를 저장
+    
+    - Data block
+      
+      - 파일의 실제 내용을 보관
+
+- FAT 파일 시스템의 구조
+  
+  ![FAT_file_system](./image/FAT_file_system.png)
+  
+  - 마이크로소프트사가 MS-DOS를 만들었을 때 처음 만든 파일 시스템
+  
+  - FAT 파일 시스템의 중요 개념
+    
+    - Boot block
+      
+      - 부팅에 필요한 정보
+    
+    - FAT
+      
+      - 파일의 메타데이터 중 일부(위치정보)를 보관
+    
+    - Root directory
+    
+    - Data block
+      
+      - 대부분의 메타데이터 보관
+        
+        - 파일의 이름을 비롯한 접근권한, 소유주, 파일의 사이즈, 해당 파일의 첫번째 위치 등
