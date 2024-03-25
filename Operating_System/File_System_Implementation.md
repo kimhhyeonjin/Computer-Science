@@ -91,55 +91,91 @@
             - 단점
               
               - index를 위한 공간 낭비 발생
-
-- UNIX 파일 시스템의 구조
   
-  ![UNIX_file_system](./image/UNIX_file_system.png)
-  
-  - 유닉스 파일 시스템의 중요 개념
+  - Free-Space Management
     
-    - Boot block
+    - bit map or bit vector
       
-      - 모든 파일 시스템의 제일 앞에 옴
+      - bit[i]가 0이면 free, 1이면 occupied
       
-      - 부팅에 필요한 정보 (bootstrap loader)
+      - 부가적인 공간을 필요로 함
+      
+      - 연속적인 n개의 free block을 찾는데 효과적
+    
+    - linked list
+      
+      - 모든 free block을 링크로 연결 (free list)
+      
+      - 연속적인 가용공간을 찾는 것은 쉽지 않음
+      
+      - 공간의 낭비가 없음
+    
+    - grouping
+      
+      - linked list 방법의 변형
+      
+      - 첫번째 free block이 n개의 pointer를 가짐
         
-        - 운영체제의 커널의 위치를 찾아 메모리에 올려 정상적인 부팅이 일어나게 됨
-    
-    - Super block
-      
-      - 파일 시스템에 관한 총체적인 정보를 담고 있음
-      
-      - 어디가 빈 블록이고 어디가 실제로 파일이 사용중인 블록인지, 어디까지가 Inode list이고 어디부터가 data block인지에 대한 정보 등
-    
-    - Inode list
-      
-      - 파일 이름을 제외한 파일의 모든 메타 데이터를 저장
-    
-    - Data block
-      
-      - 파일의 실제 내용을 보관
-
-- FAT 파일 시스템의 구조
-  
-  ![FAT_file_system](./image/FAT_file_system.png)
-  
-  - 마이크로소프트사가 MS-DOS를 만들었을 때 처음 만든 파일 시스템
-  
-  - FAT 파일 시스템의 중요 개념
-    
-    - Boot block
-      
-      - 부팅에 필요한 정보
-    
-    - FAT
-      
-      - 파일의 메타데이터 중 일부(위치정보)를 보관
-    
-    - Root directory
-    
-    - Data block
-      
-      - 대부분의 메타데이터 보관
+        - n-1 pointer는 free data block을 가리킴
         
-        - 파일의 이름을 비롯한 접근권한, 소유주, 파일의 사이즈, 해당 파일의 첫번째 위치 등
+        - 마지막 pointer가 가리키는 block은 또다시 n pointer를 가짐
+    
+    - counting
+      
+      - 프로그램이 종종 여러 개의 연속적인 block을 할당하고 반납한다는 성질에 착안
+      
+      - (first free block, # of contiguous free blocks)의 형태 유지
+
+- 파일 시스템의 구조
+  
+  - UNIX 파일 시스템의 구조
+    
+    ![UNIX_file_system](./image/UNIX_file_system.png)
+    
+    - 유닉스 파일 시스템의 중요 개념
+      
+      - Boot block
+        
+        - 모든 파일 시스템의 제일 앞에 옴
+        
+        - 부팅에 필요한 정보 (bootstrap loader)
+          
+          - 운영체제의 커널의 위치를 찾아 메모리에 올려 정상적인 부팅이 일어나게 됨
+      
+      - Super block
+        
+        - 파일 시스템에 관한 총체적인 정보를 담고 있음
+        
+        - 어디가 빈 블록이고 어디가 실제로 파일이 사용중인 블록인지, 어디까지가 Inode list이고 어디부터가 data block인지에 대한 정보 등
+      
+      - Inode list
+        
+        - 파일 이름을 제외한 파일의 모든 메타 데이터를 저장
+      
+      - Data block
+        
+        - 파일의 실제 내용을 보관
+  
+  - FAT 파일 시스템의 구조
+    
+    ![FAT_file_system](./image/FAT_file_system.png)
+    
+    - 마이크로소프트사가 MS-DOS를 만들었을 때 처음 만든 파일 시스템
+    
+    - FAT 파일 시스템의 중요 개념
+      
+      - Boot block
+        
+        - 부팅에 필요한 정보
+      
+      - FAT
+        
+        - 파일의 메타데이터 중 일부(위치정보)를 보관
+      
+      - Root directory
+      
+      - Data block
+        
+        - 대부분의 메타데이터 보관
+          
+          - 파일의 이름을 비롯한 접근권한, 소유주, 파일의 사이즈, 해당 파일의 첫번째 위치 등
