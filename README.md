@@ -4,7 +4,7 @@
 
 #### 이것이 취업을 위한 코딩 테스트다 with 파이썬 참고
 
-<details open>
+<details close>
 <summary><b>시간 복잡도 (시간 제한이 1초인 문제에 대해)</b></summary>
 <div markdown="1">
 
@@ -27,7 +27,7 @@
 </div>
 </details>
 
-<details open>
+<details close>
 <summary><b>목차</b></summary>
 <div markdown="1">
 
@@ -35,7 +35,7 @@
 
 - [구현](./Algorithm/구현.md)
 
-- DFS
+- [DFS](./Algorithm/DFS.md)
 
 - BFS
 
@@ -58,7 +58,7 @@
 
 #### [kocw 반효경 교수님 강의 참고](http://www.kocw.net/home/search/kemView.do?kemId=1046323)
 
-<details open>
+<details close>
 <summary><b>목차</b></summary>
 <div markdown="1">
 
