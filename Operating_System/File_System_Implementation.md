@@ -179,3 +179,55 @@
         - 대부분의 메타데이터 보관
           
           - 파일의 이름을 비롯한 접근권한, 소유주, 파일의 사이즈, 해당 파일의 첫번째 위치 등
+
+- Directory Implementation
+  
+  - linear list
+    
+    - `<file name, file의 metadata>`의 list
+    
+    - 구현이 간단함
+    
+    - 디렉토리 내에 파일이 있는지 찾기 위해서는 linear search가 필요함
+      
+      - 시간 소요
+  
+  - hash table
+    
+    - linear list + hashing
+    
+    - hash table은 file name을 이 파일의 linear list의 위치로 바꾸어줌
+    
+    - search time을 없앰
+    
+    - collision 발생 가능
+  
+  - file의 metadata의 보관 위치
+    
+    - 디렉토리 내에 직접 보관
+    
+    - 디렉토리에는 포인터를 두고 다른 곳에 보관
+      
+      - inode(UNIX 시스템), FAT(FAT 파일 시스템) 등
+  
+  - long file name의 지원
+    
+    - `<file name, file의 metadata>`의 list에서 각 entry는 일반적으로 고정 크기
+    
+    - file name이 고정 크기의 entry 길이보다 길어지는 경우 entry의 마지막 부분에 이름의 뒷부분이 위치한 곳의 **포인터**를 두는 방법
+    
+    - 이름의 나머지 부분은 동일한 directory file의 일부에 존재
+
+- VFS and NFS
+  
+  ![vfs_and_nfs](./image/vfs_and_nfs.png)
+  
+  - VFS (Virtual File System)
+    
+    - 서로 다른 다양한 file system에 대해 **동일한 시스템 콜 인터페이스(API)를 통해 접근**할 수 있게 해주는 OS의 layer
+  
+  - NFS (Network File System)
+    
+    - 분산 시스템에서는 네트워크를 통해 파일이 공유될 수 있음
+    
+    - NFS는 분산 환경에서의 대표적인 파일 공유 방법
