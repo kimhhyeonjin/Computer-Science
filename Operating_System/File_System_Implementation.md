@@ -231,3 +231,37 @@
     - 분산 시스템에서는 네트워크를 통해 파일이 공유될 수 있음
     
     - NFS는 분산 환경에서의 대표적인 파일 공유 방법
+
+- page cache와 buffer cache
+  
+  - page cache
+    
+    - virtual memory의 paging system에서 사용하는 page frame을 caching의 관점에서 설명하는 용어
+    
+    - memory-mapped I/O를 쓰는 경우 file의 I/O에서도 page cache 사용
+      
+      - memory-mapped I/O
+        
+        - file의 일부를 virtual memory에 mapping시킴
+        
+        - 매핑시킨 영역에 대한 메모리 접근 연산은 파일의 입출력을 수행하게 함
+  
+  - buffer cache
+    
+    - 파일시스템을 통한 I/O 연산은 메모리의 특정 영역인 buffer cache 사용
+    
+    - file 사용의 locality 활용
+      
+      - 한번 읽어온 block에 대한 후속 요청 시 buffer cache에서 즉시 전달
+    
+    - 모든 프로세스가 공용으로 사용
+    
+    - replacement algorithm (LRU, LFU 등) 필요
+  
+  - unified buffer cache
+    
+    ![unified_buffer_cache](./image/unified_buffer_cache.png)
+    
+    - 최근 OS에서는 기존의 buffer cache가 page cache에 통합됨
+    
+    - buffer cache도 page 단위로 관리
