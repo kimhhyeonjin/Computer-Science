@@ -84,7 +84,7 @@
 
 - [File System Implementation](./Operating_System/File_System_Implementation.md)
 
-- Disk Management and Scheduling
+- [Disk Management and Scheduling](./Operating_System/Disk_Management_and_Scheduling.md)
 
 </div>
 </details>
