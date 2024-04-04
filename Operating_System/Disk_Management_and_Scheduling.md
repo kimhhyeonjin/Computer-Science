@@ -49,3 +49,57 @@
     - sector 0은 full bootstrap loader program
     
     - OS를 디스크에서 load하여 실행
+
+- Disk Scheduling
+  
+  - disk scheduling
+    
+    - access time의 구성
+      
+      - seek time
+        
+        - 헤드를 해당 실린더로 움직이는데 걸리는 시간
+      
+      - rotational latency
+        
+        - 헤드가 원하는 섹터에 도달하기까지 걸리는 회전지연시간
+        
+        - seek time의 1/10 정도
+      
+      - transfer time
+        
+        - 실제 데이터의 전송 시간
+    
+    - disk bandwidth
+      
+      - 단위 시간 당 전송된 바이트의 수
+    
+    - disk scheduling
+      
+      - seek time을 최소화하는 것이 목표
+      
+      - seek time ~= seek distance
+  
+  - disk scheduling algorithm
+    
+    - FCFS (First Come First Served)
+      
+      - 들어온 순서대로 처리
+      
+      - 비효율적
+    
+    - SSTF (Shortest Seek Time First)
+      
+      - 현재 헤드 위치에서 제일 가까운 요청을 가장 먼저 처리
+      
+      - starvation 문제
+    
+    - SCAN
+    
+    - C-SCAN
+    
+    - N-SCAN
+    
+    - LOOK
+    
+    - C-LOOK
