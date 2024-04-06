@@ -129,3 +129,57 @@
       - C-SCAN과 진행방향은 같음
       
       - 헤드가 진행 중이다가 그 방향에 더 이상 기다리는 요청이 없으면 헤드의 이동방향을 즉시 반대로 이동
+  
+  - disk scheduling algorithm의 결정
+    
+    - SCAN, C-SCAN 및 그 응용 알고리즘은 LOOK, C-LOOK 등이 일반적으로 디스크 입출력이 많은 시스템에서 효율적인 것으로 알려져 있음
+    
+    - file의 할당 방법에 따라 디스크 요청이 영향을 받음
+    
+    - 디스크 스케줄링 알고리즘은 필요할 경우 다른 알고리즘으로 쉽게 교체할 수 있도록 OS와 별도의 모듈로 작성되는 것이 바람직
+
+- Swap-space management
+  
+  - disk를 사용하는 이유
+    
+    - memory의 휘발성
+      
+      - file system과 같이 영속적으로 데이터를 유지해야 하는 경우 비휘발성인 디스크 사용
+    
+    - 프로그램 실행을 위한 memory 공간 부족
+      
+      - swap area
+  
+  - swap space (=swap area)
+    
+    - virtual memory system에서 디스크를 memory의 연장 공간으로 사용
+    
+    - 파일시스템 내부에 둘 수도 있으나 별도 partition 사용이 일반적
+      
+      - 공간 효율성보다는 속도 효율성이 우선
+        
+        - 프로세스가 끝나면 없어질 내용이기 때문
+      
+      - 일반 파일보다 훨씬 짧은 시간만 존재하고 자주 참조됨
+      
+      - block의 크기 및 저장 방식이 일반 파일시스템과 다름
+
+- RAID (Redundant Array of Independent Disks)
+  
+  - 여러 개의 디스크를 묶어서 사용
+  
+  - 목적
+    
+    - 디스크 처리 속도 향상
+      
+      - 여러 디스크에 block의 내용을 분산 저장
+      
+      - 병렬적으로 읽어옴 (interleaving, striping)
+    
+    - 신뢰성(Reliability) 향상
+      
+      - 동일 정보를 여러 디스크에 중복 저장
+      
+      - 하나의 디스크가 고장(failure) 시 다른 디스크에서 읽어옴 (mirroring, shadowing)
+      
+      - 단순한 중복 저장이 아니라 일부 디스크에 parity를 저장하여 공간의 효율성을 높임
