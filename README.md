@@ -9,19 +9,19 @@
 <div markdown="1">
 
 - N의 범위가 500인 경우
-  
+
   - 시간 복잡도가 O(N^3)인 알고리즘 설계
 
 - N의 범위가 2,000인 경우
-  
+
   - 시간 복잡도가 O(N^2)인 알고리즘 설계
 
 - N의 범위가 100,000인 경우
-  
+
   - 시간 복잡도가 O(NlogN)인 알고리즘 설계
 
 - N의 범위가 10,000,000인 경우
-  
+
   - 시간 복잡도가 O(N)인 알고리즘 설계
 
 </div>
@@ -85,6 +85,61 @@
 - [File System Implementation](./Operating_System/File_System_Implementation.md)
 
 - [Disk Management and Scheduling](./Operating_System/Disk_Management_and_Scheduling.md)
+
+</div>
+</details>
+
+## 자료구조 (Data Structure)
+
+<details close>
+<summary><b>목차</b></summary>
+<div markdown="1">
+
+- 단순 자료구조
+
+  - 정수
+
+  - 실수
+
+  - 문자
+
+  - 문자열
+
+  - 포인터
+
+- 복잡 자료구조
+
+  - 선형 구조
+
+    - 배열
+
+    - 연결 리스트
+
+    - 스택
+
+    - 큐
+
+    - 덱
+
+  - 비선형 구조
+
+    - 트리
+
+      - 일반 트리
+
+      - 이진 트리
+
+        - 이진 탐색 트리
+
+        - AVL 트리
+
+    - 그래프
+
+      - 방향 그래프
+
+      - 무방향 그래프
+
+      - 가중치 그래프
 
 </div>
 </details>
